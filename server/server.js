@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 
 //constants for router files here:
     //Ex const playerRouter = require('./routes/player.router')
-
+templateRouter = require('./routes/template.router')
 // Body parser middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
