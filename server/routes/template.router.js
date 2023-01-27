@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool')
 
-//GET example
+//GET example (without full try/catch and async)
 // router.get('/', (req, res) => {
 //     const query =  
     //SQL text here
