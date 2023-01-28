@@ -17,6 +17,19 @@ const axios = require('axios')
 //       })
   
 //   });
+
+// https://api.openbrewerydb.org/breweries/meta?by_state=minnesota
+//     returns: {
+//         "total": "182",
+//         "page": "1",
+//         "per_page": "20"
+//     }
+
+//TODO:
+    //1. intial query to get total (above)
+    //2. Then async calls with proper offsets to build total object
+    //3. Cache info in DB?
+    //4. Return objects with just required info to client side
 router.get('/', (req, res) => {
     const {data}  = axios({
         method: 'GET',
