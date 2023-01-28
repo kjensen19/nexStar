@@ -24,6 +24,14 @@ function App(){
         })
     }
 
+    const addBrewery = () => {
+        axios({
+            method: 'POST',
+            url: '/api/template',
+            data: ''
+        })
+    }
+
     return(
         <>
             <Header />
