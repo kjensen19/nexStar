@@ -10,7 +10,7 @@ function App(){
             method: 'GET',
             url: '/api/template'
         }).then((response) => {
-            console.log('GET response: ', response)
+            console.log('GET response: ', response.data)
             setBrewery(response)
         }).catch((error) => {
             console.log('error in GET: ', error)

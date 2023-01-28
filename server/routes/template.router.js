@@ -18,13 +18,12 @@ const axios = require('axios')
   
 //   });
 router.get('/', (req, res) => {
-    const data  = axios({
+    const {data}  = axios({
         method: 'GET',
         url: 'https://api.openbrewerydb.org/breweries?by_state=minnesota&per_page=10&page=1'
-    })
-    console.log('DATA = ', data)
-    .then( result => {
-        res.send(data)
+    }).then( (result) => {
+        console.log('result', result.data)
+        res.send(result.data)
     }).catch(err => {
         console.log('ERR in TEMPLATE GET:', err);
         res.sendStatus(500)

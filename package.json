@@ -1,9 +1,10 @@
-{  "name": "nexstar",
-"version": "0.1.0",
-"private": true,
-"proxy": "http://localhost:5000",
-"engines": {
-  "node": "18.x"
+{  
+  "name": "nexstar",
+  "version": "0.1.0",
+  "private": true,
+  "proxy": "http://localhost:5000",
+  "engines": {
+    "node": "19.x"
 },
   "dependencies": {
     "axios": "^1.2.5",
