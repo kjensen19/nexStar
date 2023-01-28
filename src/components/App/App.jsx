@@ -1,12 +1,16 @@
 import axios from "axios";
 import { useState, useEffect } from 'react';
 
-import Header from "./Header/Header";
-import BreweryList from "./BreweryList/BreweryList";
-import Footer from "./Footer/Footer";
+import Header from "../Header/Header";
+import BreweryList from "../BreweryList/BreweryList";
+import Footer from "../Footer/Footer";
 
 function App(){
     const [brewries, setBrewries] = useState([])
+
+    useEffect(() =>{
+        fetchBreweries()
+    }, [])
 
     const fetchBreweries = () => {
         axios({
