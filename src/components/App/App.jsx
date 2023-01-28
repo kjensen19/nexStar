@@ -1,11 +1,14 @@
 import axios from "axios";
 import { useState, useEffect } from 'react';
+
+import Header from "./Header/Header";
 import BreweryList from "./BreweryList/BreweryList";
+import Footer from "./Footer/Footer";
 
 function App(){
     const [brewries, setBrewries] = useState([])
 
-    const handleClick = () => {
+    const fetchBreweries = () => {
         axios({
             method: 'GET',
             url: '/api/template'
@@ -18,12 +21,15 @@ function App(){
     }
 
     return(
-        <div>
-            <button onClick={handleClick}></button>
+        <>
+            <Header />
+            <div>
+                <button onClick={fetchBreweries}>Get Breweries</button>
+                <button>Add Brewery</button>
                 <BreweryList brewries={brewries} />
-
-            
-        </div>
+            </div>
+            <Footer />
+        </>
     )
 }
 
