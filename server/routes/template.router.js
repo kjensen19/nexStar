@@ -3,6 +3,7 @@ const router = express.Router();
 const pool = require('../modules/pool')
 const axios = require('axios')
 
+
 //GET example (without full try/catch and async)
 // router.get('/', (req, res) => {
 //     const query =  
@@ -36,6 +37,7 @@ router.get('/', (req, res) => {
         url: 'https://api.openbrewerydb.org/breweries?by_state=minnesota&per_page=10&page=1'
     }).then( (result) => {
         console.log('result', result.data)
+
         res.send(result.data)
     }).catch(err => {
         console.log('ERR in TEMPLATE GET:', err);
@@ -44,3 +46,11 @@ router.get('/', (req, res) => {
 })
 
 module.exports = router
+
+// const {getLinkPreview} = require ("link-preview-js")
+// for(let wp of result.data){
+//     console.log('???', wp.website_url)
+//     if(wp.website_url !== null){
+//     getLinkPreview(wp.website_url, {followRedirects: 'follow'}).then((data) =>
+//     console.log('does it work?', data)
+//     )}};
