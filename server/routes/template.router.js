@@ -18,7 +18,7 @@ const axios = require('axios')
   
 //   });
 router.get('/', (req, res) => {
-    const { data } = axios({
+    const data  = axios({
         method: 'GET',
         url: 'https://api.openbrewerydb.org/breweries?by_state=minnesota&per_page=10&page=1'
     })
@@ -30,3 +30,5 @@ router.get('/', (req, res) => {
         res.sendStatus(500)
     })
 })
+
+module.exports = router
