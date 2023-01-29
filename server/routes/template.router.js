@@ -82,6 +82,25 @@ router.delete('/:id', (req, res) =>{
     })
 })
 
+//PUT
+router.put('/:id', (req, res) => {
+    console.log('req.params(PUT)', req.params)
+    const brewery= req.body
+    const sqlText = `
+        UPDATE "breweries"
+            SET "name" = $2, "street" = $3, "city" = $4, "state" = $5, "postal_code" = $6, "website_url" = $7
+                WHERE id=$1
+    `
+    const sqlValues = [req.params, brewery.name, brewery.street, brewery.city, brewery.state, brewery.postal_code, brewery.website_url]
+    pool.query(sqlText, sqlValues)
+    .then((dbres) => {
+        res.sendStatus(200)
+    }).catch((dberr) => {
+        console.log('error in PUT: ', dberr)
+        res.sendStatus(500)
+    })
+})
+
 module.exports = router
 
 // const {getLinkPreview} = require ("link-preview-js")
