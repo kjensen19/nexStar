@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-// const pool = require('../modules/pool')
+const pool = require('../modules/pool')
 const axios = require('axios')
 
 
@@ -45,10 +45,25 @@ router.get('/', (req, res) => {
     })
 })
 //object in req.body
+// {name: '', street: '', city: '', state: '', postal_code: '', website_url: ''}
 router.post('/', (req, res) => {
     const brewery = req.body
     console.log('req.body in POST route', brewery)
-    res.sendStatus(200)
+    const sqlText = `
+        INSERT INTO "breweries"
+            ("name", "street", "city", "state", "postal_code", "website_url")
+            VALUES($1, $2, $3, $4, $5, $6)
+    `
+    const sqlValues = [brewery.name, brewery.street, brewery.city, brewery.state, brewery.postal_code, brewery.website_url]
+    
+    pool.query(sqlText, sqlValues)
+    .then((dbres) => {
+        res.sendStatus(201)
+    }).catch((dbErr) => {
+        console.log('error in POST: ', dbErr)
+        res.sendStatus(500)
+    })
+    
 })
 
 module.exports = router
