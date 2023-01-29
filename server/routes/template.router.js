@@ -53,7 +53,7 @@ router.post('/', (req, res) => {
         INSERT INTO "breweries"
             ("name", "street", "city", "state", "postal_code", "website_url")
             VALUES($1, $2, $3, $4, $5, $6)
-    `
+        `
     const sqlValues = [brewery.name, brewery.street, brewery.city, brewery.state, brewery.postal_code, brewery.website_url]
     
     pool.query(sqlText, sqlValues)
@@ -64,6 +64,11 @@ router.post('/', (req, res) => {
         res.sendStatus(500)
     })
     
+})
+
+//DELETE
+router.delete('/:id', (req, res) =>{
+    console.log('req.params', req.params)
 })
 
 module.exports = router
