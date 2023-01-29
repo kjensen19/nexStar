@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const pool = require('../modules/pool')
+// const pool = require('../modules/pool')
 const axios = require('axios')
 
 
@@ -36,13 +36,19 @@ router.get('/', (req, res) => {
         method: 'GET',
         url: 'https://api.openbrewerydb.org/breweries?by_state=minnesota&per_page=10&page=1'
     }).then( (result) => {
-        console.log('result', result.data)
+        // console.log('result', result.data)
 
         res.send(result.data)
     }).catch(err => {
         console.log('ERR in TEMPLATE GET:', err);
         res.sendStatus(500)
     })
+})
+//object in req.body
+router.post('/', (req, res) => {
+    const brewery = req.body
+    console.log('req.body in POST route', brewery)
+    res.sendStatus(200)
 })
 
 module.exports = router
