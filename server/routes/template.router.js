@@ -53,7 +53,7 @@ router.post('/', (req, res) => {
         INSERT INTO "breweries"
             ("name", "street", "city", "state", "postal_code", "website_url")
             VALUES($1, $2, $3, $4, $5, $6)
-    `
+        `
     const sqlValues = [brewery.name, brewery.street, brewery.city, brewery.state, brewery.postal_code, brewery.website_url]
     
     pool.query(sqlText, sqlValues)
@@ -64,6 +64,22 @@ router.post('/', (req, res) => {
         res.sendStatus(500)
     })
     
+})
+
+//DELETE
+router.delete('/:id', (req, res) =>{
+    console.log('req.params', req.params)
+    const sqlText = `
+        DELETE from "breweries"
+            WHERE id=$1
+    `
+    pool.query(sqlText, [req.params])
+    .then((dbres) =>{
+        res.sendStatus(200)
+    }).catch((dbErr) => {
+        console.log('error in del: ', dbErr)
+        res.sendStatus(500)
+    })
 })
 
 module.exports = router

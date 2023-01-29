@@ -32,7 +32,7 @@ function App(){
             <div>
                 <button onClick={fetchBreweries}>Get Breweries</button>
                 <button>Add Brewery</button>
-                <BreweryList brewries={brewries} />
+                <BreweryList brewries={brewries} fetchBreweries={fetchBreweries}/>
                 <AddBrewery fetchBreweries={fetchBreweries} />
             </div>
             <Footer />
