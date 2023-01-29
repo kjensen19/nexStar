@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useState, useEffect } from 'react';
-
 import Header from "../Header/Header";
 import BreweryList from "../BreweryList/BreweryList";
 import AddBrewery from "../AddBrewery/AddBrewery";
@@ -29,7 +28,7 @@ function App(){
     return(
         <>
             <Header />
-            <div>
+            <div className="flex">
                 <button onClick={fetchBreweries}>Get Breweries</button>
                 <button>Add Brewery</button>
                 <BreweryList brewries={brewries} fetchBreweries={fetchBreweries}/>
