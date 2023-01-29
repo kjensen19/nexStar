@@ -32,6 +32,16 @@ const axios = require('axios')
     //3. Cache info in DB?
     //4. Return objects with just required info to client side
 router.get('/', (req, res) => {
+    var breweryCount = 0
+    axios({
+        method: 'GET',
+        url: 'https://api.openbrewerydb.org/breweries/meta?by_state=minnesota'
+    }).then((result) => {
+        //Returns needed number of queries to get all data
+        breweryCount = (result.data.total / result.data.per_page)
+        console.log('Brewery Count', breweryCount)
+    })
+
     const {data}  = axios({
         method: 'GET',
         url: 'https://api.openbrewerydb.org/breweries?by_state=minnesota&per_page=10&page=1'
