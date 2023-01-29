@@ -36,13 +36,34 @@ router.get('/', (req, res) => {
         method: 'GET',
         url: 'https://api.openbrewerydb.org/breweries?by_state=minnesota&per_page=10&page=1'
     }).then( (result) => {
-        console.log('result', result.data)
+        // console.log('result', result.data)
 
         res.send(result.data)
     }).catch(err => {
         console.log('ERR in TEMPLATE GET:', err);
         res.sendStatus(500)
     })
+})
+//object in req.body
+// {name: '', street: '', city: '', state: '', postal_code: '', website_url: ''}
+router.post('/', (req, res) => {
+    const brewery = req.body
+    console.log('req.body in POST route', brewery)
+    const sqlText = `
+        INSERT INTO "breweries"
+            ("name", "street", "city", "state", "postal_code", "website_url")
+            VALUES($1, $2, $3, $4, $5, $6)
+    `
+    const sqlValues = [brewery.name, brewery.street, brewery.city, brewery.state, brewery.postal_code, brewery.website_url]
+    
+    pool.query(sqlText, sqlValues)
+    .then((dbres) => {
+        res.sendStatus(201)
+    }).catch((dbErr) => {
+        console.log('error in POST: ', dbErr)
+        res.sendStatus(500)
+    })
+    
 })
 
 module.exports = router

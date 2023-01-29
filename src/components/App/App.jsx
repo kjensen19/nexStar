@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 
 import Header from "../Header/Header";
 import BreweryList from "../BreweryList/BreweryList";
+import AddBrewery from "../AddBrewery/AddBrewery";
 import Footer from "../Footer/Footer";
 
 function App(){
@@ -24,13 +25,6 @@ function App(){
         })
     }
 
-    const addBrewery = () => {
-        axios({
-            method: 'POST',
-            url: '/api/template',
-            data: ''
-        })
-    }
 
     return(
         <>
@@ -39,6 +33,7 @@ function App(){
                 <button onClick={fetchBreweries}>Get Breweries</button>
                 <button>Add Brewery</button>
                 <BreweryList brewries={brewries} />
+                <AddBrewery fetchBreweries={fetchBreweries} />
             </div>
             <Footer />
         </>
