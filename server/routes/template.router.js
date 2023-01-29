@@ -69,6 +69,17 @@ router.post('/', (req, res) => {
 //DELETE
 router.delete('/:id', (req, res) =>{
     console.log('req.params', req.params)
+    const sqlText = `
+        DELETE from "breweries"
+            WHERE id=$1
+    `
+    pool.query(sqlText, [req.params])
+    .then((dbres) =>{
+        res.sendStatus(200)
+    }).catch((dbErr) => {
+        console.log('error in del: ', dbErr)
+        res.sendStatus(500)
+    })
 })
 
 module.exports = router
