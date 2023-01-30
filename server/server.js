@@ -1,19 +1,18 @@
 //require and intialize Express
 const express = require('express');
 const app = express();
-//for processing JSON
-// const bodyParser = require('body-parser');
+require('dotenv').config()
 
+const sessionMiddleware = require('./modules/session-middleware')
+const passport = require('./strategies/user.strategy')
 
-//constants for router files here:
-    //Ex const playerRouter = require('./routes/player.router')
+//middleware
+// Passport Session Configuration //
+app.use(sessionMiddleware);
 
-
-//Listen for axios requests:
-//ex app.use('/api/player', playerRouter)
-
-
-// Body parser middleware
+// start up passport sessions
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

@@ -2,8 +2,6 @@ import axios from "axios";
 import { useState, useEffect } from 'react';
 import Header from "../Header/Header";
 import BreweryList from "../BreweryList/BreweryList";
-import AddBrewery from "../AddBrewery/AddBrewery";
-import Footer from "../Footer/Footer";
 
 function App(){
     const [brewries, setBrewries] = useState([])
