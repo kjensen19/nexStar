@@ -47,7 +47,7 @@ export default function AddBrewery({ fetchBreweries }){
     return(
         <>
       <button
-        className="px-4 py-1 text-sm bg-white text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
+        className="px-4 py-1 text-sm max-h-8 shadow-md bg-white text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
         type="button"
         onClick={() => setShowModal(true)}
       >

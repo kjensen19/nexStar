@@ -4,7 +4,7 @@ export default function BreweryList({ brewries, fetchBreweries }){
     console.log('breweries: ', brewries)
     return(
         
-        <div>
+        <div className="border-8 flex flex-wrap gap-2 justify-evenly w-max rounded-xl">
             {brewries && brewries.map((brewery, i) =>(
                 <BreweryItem brewery={brewery} key={brewery.id} fetchBreweries={fetchBreweries}/>
             ))}
