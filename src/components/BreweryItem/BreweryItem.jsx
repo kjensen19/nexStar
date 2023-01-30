@@ -15,17 +15,20 @@ export default function BreweryItem({ brewery,fetchAllBreweries }){
             console.log('DEL err: ', err)
         })
     }
-    //Tailwind modal here?:
+    //This should become favorite brewery, add fav brewery router. On click go from outline to filled icon
     const updateBrewery = () => {
         axios({
             method: 'PUT',
             url: `api/template/:${brewery.id}`,
-            data: ''
+            data: brewery
         }).then((res) => {
             fetchAllBreweries()
         }).catch((err) => {
             console.log('Err in PUT: ', err)
         })
+    }
+    const showDetails = () => {
+        //either show extra info that is already included in object or fetch details for this id
     }
 
     return(
@@ -41,9 +44,9 @@ export default function BreweryItem({ brewery,fetchAllBreweries }){
                 {brewery.website_url != null ? <a href={`${brewery.website_url}`} target={'_blank'}>Website</a> : <p className="text-slate-500 font-medium">URL Not provided</p>}
                 </div>
                 <div className="flex">
-                    <button className="px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">Details</button>
-                    <button onClick={deleteBrewery} className="px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">Edit</button>
-                    <button onClick={updateBrewery} className="px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">Delete</button>
+                    <button onClick={showDetails} className="px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">Details</button>
+                    <button onClick={updateBrewery} className="px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">Edit</button>
+                    <button onClick={deleteBrewery} className="px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">Delete</button>
                 </div>
             </div>
         </div>

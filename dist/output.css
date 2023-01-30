@@ -1552,6 +1552,10 @@ select {
   outline-offset: 2px;
 }
 
+.outline {
+  outline-style: solid;
+}
+
 .hover\:border-transparent:hover {
   border-color: transparent;
 }
