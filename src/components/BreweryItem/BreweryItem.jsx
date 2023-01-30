@@ -1,6 +1,6 @@
 import axios from "axios"
 
-export default function BreweryItem({ brewery,fetchBreweries }){
+export default function BreweryItem({ brewery,fetchAllBreweries }){
     console.log('brewery name: ', brewery)
     //Edit go to a detail view or bring up a modal?
     //Details on click or a button?
@@ -10,7 +10,7 @@ export default function BreweryItem({ brewery,fetchBreweries }){
             method: 'DELETE',
             url: `/api/template/:${brewery.id}`
         }).then((res) => {
-            fetchBreweries()
+            fetchAllBreweries()
         }).catch((err) => {
             console.log('DEL err: ', err)
         })
@@ -22,7 +22,7 @@ export default function BreweryItem({ brewery,fetchBreweries }){
             url: `api/template/:${brewery.id}`,
             data: ''
         }).then((res) => {
-            fetchBreweries()
+            fetchAllBreweries()
         }).catch((err) => {
             console.log('Err in PUT: ', err)
         })

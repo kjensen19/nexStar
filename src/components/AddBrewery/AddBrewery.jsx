@@ -3,7 +3,7 @@ import axios from 'axios';
 
 
 
-export default function AddBrewery({ fetchBreweries }){
+export default function AddBrewery({ fetchAllBreweries }){
     //Variable for intial state and to empty inputs/state after successful add
     const emptyInputs = {name:'', street:'', city:'', state:'', postal_code:'', website_url:''}
     //Brewery add object
@@ -31,7 +31,7 @@ export default function AddBrewery({ fetchBreweries }){
         ).then((res) =>{
             console.log('res here???', res)
             setShowModal(false)
-            // fetchBreweries()
+            // fetchAllBreweries()
             // setNewBrewery(emptyInputs)
         }).catch((err) =>{
             //TODO: Add Alert here
