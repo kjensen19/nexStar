@@ -1,6 +1,9 @@
-
+import AddBrewery from "../AddBrewery/AddBrewery"
 export default function Footer(){
     return(
-        <h1>Footer info here</h1>
+        <div>
+            <h1>Footer info here</h1>
+            <AddBrewery />
+        </div> 
     )
 }
