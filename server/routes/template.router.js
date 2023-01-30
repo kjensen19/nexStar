@@ -97,11 +97,10 @@ router.put('/:id', (req, res) => {
     console.log('req.params(PUT)', req.params)
     const brewery= req.body
     const sqlText = `
-        UPDATE "breweries"
-            SET "name" = $2, "street" = $3, "city" = $4, "state" = $5, "postal_code" = $6, "website_url" = $7
-                WHERE id=$1
-    `
-    const sqlValues = [req.params, brewery.name, brewery.street, brewery.city, brewery.state, brewery.postal_code, brewery.website_url]
+    INSERT INTO "breweries"
+    ("name", "street", "city", "state", "postal_code", "website_url", "favorite")
+        VALUES($1, $2, $3, $4, $5, $6, $7)`
+    const sqlValues = [brewery.name, brewery.street, brewery.city, brewery.state, brewery.postal_code, brewery.website_url, true ]
     pool.query(sqlText, sqlValues)
     .then((dbres) => {
         res.sendStatus(200)
