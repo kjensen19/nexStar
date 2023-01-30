@@ -17,3 +17,6 @@ Bonus Points:
 
 Once complete send the source code in a zip file and/or send a link to a source repo with the
 code
+
+
+npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch

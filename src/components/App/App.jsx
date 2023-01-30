@@ -30,7 +30,6 @@ function App(){
             <Header />
             <div className="flex">
                 <button onClick={fetchBreweries}>Get Breweries</button>
-                <button>Add Brewery</button>
                 <BreweryList brewries={brewries} fetchBreweries={fetchBreweries}/>
                 <AddBrewery fetchBreweries={fetchBreweries} />
             </div>
