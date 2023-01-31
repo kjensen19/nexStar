@@ -10,11 +10,11 @@ function App(){
     const [breweries, setBreweries] = useState([])
     const [currentUser, setCurrentUser] = useState([])
     const [favorites, setFavorites] = useState(false)
-
+    //Calls useEffect on page load and any change to the favorite state (toggled by button)
     useEffect(() =>{
         fetchAllBreweries()
     }, [favorites])
-
+    //Conditionally decides if it should fetch all or fetch favorites based on state
     const fetchAllBreweries = () => {
         (favorites === false ? 
             axios({

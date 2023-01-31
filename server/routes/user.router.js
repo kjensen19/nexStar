@@ -34,7 +34,7 @@ router.post('/register', (req, res, next) => {
 });
 
 // Handles login form authenticate/login POST
-// userStrategy.authenticate('local') is middleware that we run on this route
+// userStrategy.authenticate('local') is middleware run ons this route
 // this middleware will run our POST if successful
 // this middleware will send a 404 if not successful
 router.post('/login', userStrategy.authenticate('local'), (req, res) => {

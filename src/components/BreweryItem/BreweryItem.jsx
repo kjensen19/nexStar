@@ -7,8 +7,6 @@ export default function BreweryItem({ brewery, fetchAllBreweries, favorites }){
     const [fav, setFav] = useState(false)
     const [details, setDetails] = useState(false)
     // console.log('brewery name: ', brewery)
-    //Edit go to a detail view or bring up a modal?
-    //Details on click or a button?
 
     const deleteBrewery = () => {
         axios({
@@ -20,12 +18,11 @@ export default function BreweryItem({ brewery, fetchAllBreweries, favorites }){
             console.log('DEL err: ', err)
         })
     }
-    //This should become favorite brewery, add fav brewery router. On click go from outline to filled icon
-
+    //Details toggle function
     const showDetails = () => {
         setDetails(!details)
     }
-    
+    //Handlers for favorite and unfavorite
     const favorite = () => {
         brewery.favorite = true
         setFav(brewery.favorite)
@@ -86,21 +83,3 @@ export default function BreweryItem({ brewery, fetchAllBreweries, favorites }){
 
     )
 }
-
-/* <div >
-
-<p>{brewery.name}</p>
-{brewery.website_url != null ? <a href={`${brewery.website_url}`} target={'_blank'}>Website</a> : <p>URL Not provided</p>}
-<button onClick={deleteBrewery}>Delete</button>
-<button onClick={updateBrewery}>Edit</button>
-</div> */
-
-/* <img className="block mx-auto h-24 rounded-full sm:mx-0 sm:shrink-0" src="/img/erin-lindford.jpg" alt="Woman's Face" /> */
-
-
-//SVG for unfilled icons, this to enable favoriting 
-/* <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-  <path strokeLinecap="round" strokeLinejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z" />
-</svg> */
-
-

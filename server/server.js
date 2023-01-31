@@ -2,16 +2,15 @@
 const express = require('express');
 const app = express();
 require('dotenv').config()
-
+//middleware
 const sessionMiddleware = require('./modules/session-middleware')
 const passport = require('./strategies/user.strategy')
 const templateRouter = require('./routes/template.router')
 const favoriteRouter = require('./routes/favorite.router')
 const userRouter = require('./routes/user.router')
-//middleware
+
 // Passport Session Configuration //
 app.use(sessionMiddleware);
-
 // start up passport sessions
 
 app.use(express.json());

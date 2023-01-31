@@ -1,5 +1,5 @@
 
-
+/* Control for small screens */
 @media(max-width: 425px) {
     #breweryCard{
         min-width: 20rem;
