@@ -20,16 +20,16 @@ export default function Header({ fetchAllBreweries, setCurrentUser, setBreweries
     }
 
     return(
-        <div className="flex flex-col">
-            <h1 className='text-4xl text-black font-semibold grid w-screen place-items-center py-4'>{value.length === 0 ? 'MN Brewery Finder' : `${value}'s Brewery Finder`}</h1>
-            <div className="flex py-4 px-4 gap-4 w-screen justify-center">
+        <div className="flex flex-col w-screen">
+            <h1 className='text-4xl text-white font-semibold grid w-screen place-items-center py-2'>{value.length === 0 ? 'MN Breweries' : `${value}'s Breweries`}</h1>
+            <div className="flex py-2 px-4 gap-4 w-auto justify-center">
                 <Login setCurrentUser={setCurrentUser}/>
-                <button className="px-4 py-1 text-sm max-h-8 shadow-md bg-white text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2" onClick={() => setFavorites(false)}>All Breweries</button>
-                <button className="px-4 py-1 text-sm max-h-8 shadow-md bg-white text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2" onClick={viewFavorites}>Favorites</button>
-                <AddBrewery fetchAllBreweries={fetchAllBreweries} buttonName={'Add Brewery'}/>
+                <button className="px-4 py-1 text-sm max-h-8 shadow-xl bg-orange-600 text-white font-semibold rounded-full border border-b-4 border-orange-700 hover:text-orange-600 hover:bg-white hover:border-transparent focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2" onClick={() => setFavorites(false)}>All</button>
+                <button className="px-4 py-1 text-sm max-h-8 shadow-xl bg-orange-600 text-white font-semibold rounded-full border border-b-4 border-orange-700 hover:text-orange-600 hover:bg-white hover:border-transparent focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2" onClick={viewFavorites}>Favorites</button>
+                <AddBrewery fetchAllBreweries={fetchAllBreweries} buttonName={'Add'}/>
             </div>
             <div className="grid w-screen place-items-center text-2xl text-white font-semibold">
-                <h1 className="bg-purple-600 rounded-xl px-2 my-2">{favorites === true ? 'Favorites' : 'All Breweries'}</h1>
+                <h1 className="  text-white rounded-xl px-2 my-2">{favorites === true ? 'Favorites' : 'All Breweries'}</h1>
             </div>
         </div>
     )

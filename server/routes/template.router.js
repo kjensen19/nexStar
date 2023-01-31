@@ -89,14 +89,20 @@ const {
 //object in req.body
 // {name: '', street: '', city: '', state: '', postal_code: '', website_url: ''}
 router.post('/', (req, res) => {
+    console.log("user in POST", req.user)
     const brewery = req.body
     console.log('req.body in POST route', brewery)
+    //SQL query to check if the user has already favorited a brewery
     const sqlText = `
         INSERT INTO "breweries"
-            ("name", "street", "city", "state", "postal_code", "phone", "website_url", "favorite")
-            VALUES($1, $2, $3, $4, $5, $6, $7, $8)
+            ("name", "street", "city", "state", "postal_code", "phone", "website_url", "favorite", "user_id")
+            SELECT $1, $2, $3, $4, $5, $6, $7, $8, $9
+              WHERE not exists (
+                select null from breweries
+                  where ("name", "user_id") = ($10, $11)
+            )
         `
-    const sqlValues = [brewery.name, brewery.street, brewery.city, brewery.state, brewery.postal_code, brewery.phone, brewery.website_url, true]
+    const sqlValues = [brewery.name, brewery.street, brewery.city, brewery.state, brewery.postal_code, brewery.phone, brewery.website_url, true, req.user.id, brewery.name, req.user.id]
     
     pool.query(sqlText, sqlValues)
     .then((dbres) => {
@@ -109,13 +115,13 @@ router.post('/', (req, res) => {
 })
 
 //DELETE
-router.delete('/:name', (req, res) =>{
+router.delete('/:id', (req, res) =>{
     console.log('req.params', req.params)
     const sqlText = `
         DELETE from "breweries"
-            WHERE "name"=$1
+            WHERE "id"=$1 AND "user_id"=$2
     `
-    pool.query(sqlText, [req.params.name])
+    pool.query(sqlText, [req.params.id, req.user.id])
     .then((dbres) =>{
         res.sendStatus(200)
     }).catch((dbErr) => {

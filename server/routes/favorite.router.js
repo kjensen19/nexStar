@@ -20,6 +20,24 @@ const {
     })
   })
 
+  router.put('/:id', (req, res) => {
+    console.log('req.params(PUT)', req.body, 'id:', req.user.id)
+    const brewery= req.body
+    const sqlText = `
+        UPDATE "breweries"
+            SET "name"=$1, "street"=$2, "city"=$3, "state"=$4, "postal_code"=$5, "website_url"=$6
+            WHERE "id"=$7 AND "user_id"=$8
+        `
+    const sqlValues = [brewery.name, brewery.street, brewery.city, brewery.state, brewery.postal_code, brewery.website_url, brewery.id, req.user.id]
+    pool.query(sqlText, sqlValues)
+    .then((dbres) => {
+        res.sendStatus(200)
+    }).catch((dberr) => {
+        console.log('error in PUT: ', dberr)
+        res.sendStatus(500)
+    })
+})
+
 
 
 
