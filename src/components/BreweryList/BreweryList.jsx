@@ -1,8 +1,11 @@
 import BreweryItem from "../BreweryItem/BreweryItem"
+import React from "react"
+import { UserContext } from "../App/App"
 
 export default function BreweryList({ brewries, fetchAllBreweries }){
+    const value = React.useContext(UserContext)
     console.log('breweries: ', brewries)
-    
+    console.log('value=', value)
     
     return(
             <div className="border-8 rounded-xl flex flex-row">

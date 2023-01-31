@@ -4,12 +4,14 @@ const encryptLib = require('../modules/encryption');
 const pool = require('../modules/pool');
 
 passport.serializeUser((user, done) => {
+    console.log('here?1')
   done(null, user.id);
 });
 
 passport.deserializeUser((id, done) => {
+    console.log('here2?')
   pool
-    .query('SELECT * FROM "Users" WHERE id = $1', [id])
+    .query('SELECT * FROM "user" WHERE id = $1', [id])
     .then((result) => {
       // Handle Errors
       const user = result && result.rows && result.rows[0];
@@ -38,11 +40,13 @@ passport.deserializeUser((id, done) => {
 passport.use(
   'local',
   new LocalStrategy((username, password, done) => {
+    console.log('are we here yet?', username, password)
     pool
-      .query('SELECT * FROM "Users" WHERE "Username" = $1', [username])
+      .query('SELECT * FROM "user" WHERE "username" = $1', [username])
       .then((result) => {
         const user = result && result.rows && result.rows[0];
-        if (user && encryptLib.comparePassword(password, user.Password)) {
+        console.log('user?', user)
+        if (user && encryptLib.comparePassword(password, user.password)) {
           // All good! Passwords match!
           // done takes an error (null in this case) and a user
           done(null, user);

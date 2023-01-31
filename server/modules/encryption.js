@@ -17,8 +17,8 @@ const comparePassword = (candidatePassword, storedPassword) => {
   The stored password has the original salt, so it will run the
   candidate password and salt through the same hashing process as before.
   If that result is the same as the stored password, then we have a match!
-  If this interests you, check out this video https://www.youtube.com/watch?v=8ZtInClXe1Q
   */
+    console.log(storedPassword)
   return bcrypt.compareSync(candidatePassword, storedPassword);
 };
 
