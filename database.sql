@@ -1,3 +1,5 @@
+-- DB name is 'nexstar', please use this or change in pool.js
+
 DROP TABLE IF EXISTS breweries CASCADE;
 CREATE TABLE "breweries" (
   "id" SERIAL PRIMARY KEY NOT NULL,
