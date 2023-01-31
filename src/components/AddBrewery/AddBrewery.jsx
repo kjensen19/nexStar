@@ -3,11 +3,11 @@ import axios from 'axios';
 
 
 
-export default function AddBrewery({ fetchAllBreweries }){
+export default function AddBrewery({ brewery={name:'', street:'', city:'', state:'', postal_code:'', website_url:''}, buttonName }){
     //Variable for intial state and to empty inputs/state after successful add
     const emptyInputs = {name:'', street:'', city:'', state:'', postal_code:'', website_url:''}
     //Brewery add object
-    const [newBrewery, setNewBrewery] = useState({name:'', street:'', city:'', state:'', postal_code:'', website_url:''})
+    const [newBrewery, setNewBrewery] = useState(brewery)
     const [showModal, setShowModal] = useState(false);
 
     //change handler to manage task as an object w/spread operator keeping previous entries
@@ -51,7 +51,7 @@ export default function AddBrewery({ fetchAllBreweries }){
         type="button"
         onClick={() => setShowModal(true)}
       >
-        Add Brewery
+       {buttonName}
       </button>
       {showModal ? (
         <>

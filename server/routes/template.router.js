@@ -93,10 +93,10 @@ router.post('/', (req, res) => {
     console.log('req.body in POST route', brewery)
     const sqlText = `
         INSERT INTO "breweries"
-            ("name", "street", "city", "state", "postal_code", "website_url")
-            VALUES($1, $2, $3, $4, $5, $6)
+            ("name", "street", "city", "state", "postal_code", "phone", "website_url", "favorite")
+            VALUES($1, $2, $3, $4, $5, $6, $7, $8)
         `
-    const sqlValues = [brewery.name, brewery.street, brewery.city, brewery.state, brewery.postal_code, brewery.website_url]
+    const sqlValues = [brewery.name, brewery.street, brewery.city, brewery.state, brewery.postal_code, brewery.phone, brewery.website_url, true]
     
     pool.query(sqlText, sqlValues)
     .then((dbres) => {
@@ -109,13 +109,13 @@ router.post('/', (req, res) => {
 })
 
 //DELETE
-router.delete('/:id', (req, res) =>{
+router.delete('/:name', (req, res) =>{
     console.log('req.params', req.params)
     const sqlText = `
         DELETE from "breweries"
-            WHERE id=$1
+            WHERE "name"=$1
     `
-    pool.query(sqlText, [req.params])
+    pool.query(sqlText, [req.params.name])
     .then((dbres) =>{
         res.sendStatus(200)
     }).catch((dbErr) => {

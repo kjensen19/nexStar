@@ -25,16 +25,14 @@ code
 npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch
 
 Decisions:
-    Authentication (multi-user seems worth, especially if deploying)
-    Stay SPA or add routing?
-    pagination
-    map interface?
-    Menu interface
+    ✅Authentication (multi-user seems worth, especially if deploying)
+    ✅Stay SPA or add routing?
+    ✅pagination
+    ✅Menu interface
     Add notes?
     Website preview (some don't work, possible security issues are the cons...  the pros are when it works it looks cool)
     Deploy
     Mobile
-    Only MN or add other states?
 
 
     
