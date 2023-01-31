@@ -12,16 +12,16 @@ const {
     `
     pool.query(sqlText)
     .then((dbres) => {
-        console.log('dbres.rows', dbres.rows)
+        //console.log('dbres.rows', dbres.rows)
         res.send(dbres.rows)
     }).catch((dbErr) => {
-        console.log('ERROR in fav GET', dbErr)
+        //console.log('ERROR in fav GET', dbErr)
         res.sendStatus(500)
     })
   })
 
   router.put('/:id', (req, res) => {
-    console.log('req.params(PUT)', req.body, 'id:', req.user.id)
+    //console.log('req.params(PUT)', req.body, 'id:', req.user.id)
     const brewery= req.body
     const sqlText = `
         UPDATE "breweries"

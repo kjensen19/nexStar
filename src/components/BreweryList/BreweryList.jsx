@@ -9,7 +9,7 @@ export default function BreweryList({ breweries, fetchAllBreweries, favorites })
     const pages = Math.ceil(breweries.length)
     console.log('value=', value)
     console.log('pages', pages)
-    
+    //Page handlers to control which breweries are displayed and allow navigation through them
     function increasePage(){
         const nextPage = page + 10
         setPage(nextPage)

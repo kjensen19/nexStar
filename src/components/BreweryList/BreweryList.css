@@ -1,3 +1,5 @@
+/* small screen responsiveness aid */
+
 @media(max-width: 425px) {
     #cardHolder{
         display: flex;

@@ -6,17 +6,10 @@ import { UserContext } from "../App/App"
 
 export default function Header({ fetchAllBreweries, setCurrentUser, setBreweries, setFavorites, favorites }){
     const value = React.useContext(UserContext)
-
+    //sets top level state to prompt a re-render
     const viewFavorites = () => {
         setFavorites(true)
-        // fetchAllBreweries()
-        // axios.get('/api/favorite')
-        // .then((response) => {
-        //     console.log('GET response: ', response.data)
-        //     setBreweries(response.data)
-        // }).catch((error) => {
-        //     console.log('error in GET: ', error)
-        // })
+
     }
 
     return(

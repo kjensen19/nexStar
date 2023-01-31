@@ -14,7 +14,7 @@ export default function Login({ setCurrentUser }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     console.log('value in login', value.length)
-    
+    //Add new user
     function registerUser(e){
         e.preventDefault()
         console.log('username, password', username, password)
@@ -27,13 +27,14 @@ export default function Login({ setCurrentUser }) {
             password: password
         }
         }).then((response) => {
+            //logs in after creating
             loginUser(e)
         }).catch((err) => {
             console.log('error registering', err)
             //TODO: Add Alert here
         })
     }
-
+    //Login current user
     function loginUser(e){
         e.preventDefault()
         console.log('here CS?')
@@ -83,17 +84,10 @@ export default function Login({ setCurrentUser }) {
 
 
 
-
+    //login and registration modal
   return (
     <>
-      {/*
-        This example requires updating your template:
 
-        ```
-        <html class="h-full bg-gray-50">
-        <body class="h-full">
-        ```
-      */}
               <>
       {value.length === 0 ? (<button
         className="px-4 py-1 text-sm max-h-8 shadow-xl bg-orange-600 text-white font-semibold rounded-full border border-b-4 border-orange-700 hover:text-orange-600 hover:bg-white hover:border-transparent "
