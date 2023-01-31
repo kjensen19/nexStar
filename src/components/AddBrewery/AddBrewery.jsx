@@ -3,11 +3,11 @@ import axios from 'axios';
 
 
 
-export default function AddBrewery({ fetchAllBreweries }){
+export default function AddBrewery({ brewery={name:'', street:'', city:'', state:'', postal_code:'', website_url:''}, buttonName }){
     //Variable for intial state and to empty inputs/state after successful add
     const emptyInputs = {name:'', street:'', city:'', state:'', postal_code:'', website_url:''}
     //Brewery add object
-    const [newBrewery, setNewBrewery] = useState({name:'', street:'', city:'', state:'', postal_code:'', website_url:''})
+    const [newBrewery, setNewBrewery] = useState(brewery)
     const [showModal, setShowModal] = useState(false);
 
     //change handler to manage task as an object w/spread operator keeping previous entries
@@ -38,26 +38,43 @@ export default function AddBrewery({ fetchAllBreweries }){
             console.log('POST err: ', err)
         })
     }
+    const updateBrewery = () => {
+      axios({
+          method: 'PUT',
+          url: `api/favorite/${brewery.id}`,
+          data: newBrewery
+      }).then((res) => {
+          setShowModal(false)
+          fetchAllBreweries()
+      }).catch((err) => {
+          console.log('Err in PUT: ', err)
+      })
+  }
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if(newBrewery.favorite === true){
+          //PUT
+          updateBrewery()
+        }
         addNewBrewery();
     }
     // {name: '', street: '', city: '', state: '', postal_code: '', website_url: ''}
     return(
         <>
       <button
-        className="px-4 py-1 text-sm max-h-8 shadow-md bg-white text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
+        className="px-4 py-1 text-sm max-h-8 shadow-xl bg-orange-600 text-white font-semibold rounded-full border border-b-4 border-orange-700 hover:text-orange-600 hover:bg-white hover:border-transparent focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2"
         type="button"
         onClick={() => setShowModal(true)}
       >
-        Add Brewery
+       {buttonName}
       </button>
       {showModal ? (
         <>
-          <div className="flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+        <div className="flex items-center justify-center shadow-xl overflow-x-hidden overflow-y-auto  px-4 sm:px-6 lg:px-8 rounded-xl fixed inset-0 bg-slate-800 opacity-90 resize-none w-screen h-screen">
+          <div className="flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 outline-none resize-none w-screen h-screen">
             <div className="relative w-auto my-6 mx-auto max-w-3xl">
-              <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+              <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none ">
                 <div className="flex items-start justify-between p-5 border-b border-solid border-gray-300 rounded-t ">
                   <h3 className="text-3xl font=semibold">Brewery Info</h3>
                   <button
@@ -183,8 +200,8 @@ export default function AddBrewery({ fetchAllBreweries }){
     </div>
     </div>
     </form>
-                 
-                </div>
+    </div>
+    </div> 
               </div>
             </div>
           </div>
