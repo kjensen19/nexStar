@@ -47,7 +47,7 @@ export default function BreweryItem({ brewery, fetchAllBreweries, favorites }){
     }
 
     return(
-        <div id="breweryCard" className="py-4 pr-6 pl-4 my-2 w-5/12 min-w-fit bg-white rounded-xl shadow-2xl space-y-2 flex hover:scale-110 bg-gradient-to-r from-white to-amber-200 ">
+        <div id="breweryCard" className="py-4 pr-6 pl-4 my-2 w-5/12 min-w-fit bg-white rounded-xl shadow-2xl space-y-2 flex :scale-110 bg-gradient-to-r from-white to-amber-200 ">
             {brewery.favorite === true ?
             <button onClick={unFavorite}>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="text-red-700 w-16 h-16 mr-4">
@@ -66,17 +66,17 @@ export default function BreweryItem({ brewery, fetchAllBreweries, favorites }){
                 <p className="text-lg text-orange-600 font-semibold mr-4">
                     {brewery.name}
                 </p>
-                {brewery.website_url != null ? <a className="text-red-400 hover:text-indigo-500 hover:shadow-2xl hover:underline hover:scale-105" href={`${brewery.website_url}`} target={'_blank'}>Website</a> : <p className="text-slate-500 font-medium">Link Not provided</p>}
+                {brewery.website_url != null ? <a className="text-red-400 hover:text-indigo-500 hover:shadow-2xl" href={`${brewery.website_url}`} target={'_blank'}>Website</a> : <p className="text-slate-500 font-medium">Link Not provided</p>}
                 </div>
-                <div className="flex gap-2 cell:gap-0">
+                <div className="flex gap-2 w-fit">
                     <button onClick={showDetails} className="px-4 py-1 mr-4 text-sm max-h-8 shadow-xl bg-orange-600 text-white font-semibold rounded-full border border-b-4 border-orange-700 hover:text-orange-200 hover:bg-indigo-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2">Details</button>
-                    {favorites === true ? <AddBrewery buttonName={'Edit'} brewery={brewery}/> : null}
                     {favorites === true ? <button onClick={deleteBrewery} className="px-4 py-1 mx-4 text-sm max-h-8 shadow-xl bg-orange-600 text-white font-semibold rounded-full border border-b-4 border-orange-700 hover:text-orange-600 hover:bg-white hover:border-transparent focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2">Delete</button> : null}
+                    {favorites === true ? <AddBrewery buttonName={'Edit'} brewery={brewery}/> : null}
                 </div>
                 
             </div>
             {details === true ? 
-                    <div className="text-orange-600">
+                    <div className="text-orange-600 ">
                         <p>({brewery.phone.slice(0,3)})-{brewery.phone.slice(0,3)}-{brewery.phone.slice(0,4)}</p>
                         <p>{brewery.street}</p>
                         <p>{brewery.city}, {brewery.postal_code}</p>

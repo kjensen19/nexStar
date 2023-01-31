@@ -71,7 +71,8 @@ export default function AddBrewery({ brewery={name:'', street:'', city:'', state
       </button>
       {showModal ? (
         <>
-          <div className="flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 outline-none ">
+        <div className="flex items-center justify-center shadow-xl overflow-x-hidden overflow-y-auto  px-4 sm:px-6 lg:px-8 rounded-xl fixed inset-0 bg-slate-800 opacity-90 resize-none w-screen h-screen">
+          <div className="flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 outline-none resize-none w-screen h-screen">
             <div className="relative w-auto my-6 mx-auto max-w-3xl">
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none ">
                 <div className="flex items-start justify-between p-5 border-b border-solid border-gray-300 rounded-t ">
@@ -199,8 +200,8 @@ export default function AddBrewery({ brewery={name:'', street:'', city:'', state
     </div>
     </div>
     </form>
-                 
-                </div>
+    </div>
+    </div> 
               </div>
             </div>
           </div>
