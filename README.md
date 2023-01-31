@@ -27,17 +27,11 @@
 
 
 
-<!-- PROJECT LOGO -->
-<br />
-<div align="center">
-  <a href="https://github.com/kjensen19/nexStar">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
 
 <h3 align="center">MN Brewery Finder</h3>
 
   <p align="center">
-    project_description
+    Brewery finding app for MN
     <br />
     <a href="https://github.com/kjensen19/nexStar"><strong>Explore the docs »</strong></a>
     <br />
@@ -129,9 +123,18 @@ This is an example of how to list things you need to use the software and how to
    ```
    Add a string of characters to enhance salting features
 4. Create a database titled 'nexstar' or change the config in pool.js (ensure that all variables match your configuration)
-5. Navigate to local project folder in one tab of the terminal npm start server (start Node)
-6. In another tab npm run client (start React), should open a new window or tab at localhost:3000
-7. If you are modifying CSS need to rebuild by running(watch flag keeps rebuilding until you ctr-c) in a third tab: npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch
+5. Navigate to local project folder in one tab of the terminal (start Node):
+    ```sh
+        npm start server
+    ```
+6. In another tab, should open a new window or tab at localhost:3000: 
+    ```sh 
+        npm run client
+    ```
+7. If you are modifying CSS need to rebuild by running(watch flag keeps rebuilding until you ctr-c) in a third tab: 
+    ```sh
+        npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch
+    ```
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
