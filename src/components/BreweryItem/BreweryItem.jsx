@@ -1,7 +1,7 @@
 import axios from "axios"
 
 export default function BreweryItem({ brewery,fetchAllBreweries }){
-    console.log('brewery name: ', brewery)
+    // console.log('brewery name: ', brewery)
     //Edit go to a detail view or bring up a modal?
     //Details on click or a button?
 
@@ -32,7 +32,7 @@ export default function BreweryItem({ brewery,fetchAllBreweries }){
     }
 
     return(
-        <div className="py-8 px-8  my-4 w-2/5 bg-white opacity-85 rounded-xl shadow-lg space-y-2 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6">
+        <div className="py-8 px-8  my-4 w-2/5 min-w-fit bg-white opacity-85 rounded-xl shadow-lg space-y-2 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6">
             {brewery.favorite === true ?
             <button>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className=" text-purple-700 w-12 h-12">

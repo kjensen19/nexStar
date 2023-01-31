@@ -5,22 +5,10 @@ const axios = require('axios')
 const {
     rejectUnauthenticated,
   } = require('../modules/authentication-middleware');
-
-
-//GET example (without full try/catch and async)
-// router.get('/', (req, res) => {
-//     const query =  
-    //SQL text here
-//     pool.query(query)
-//       .then( result => {
-//         res.send(result.rows);
-//       })
-//       .catch(err => {
-//         console.log('ERROR: Get all movies', err);
-//         res.sendStatus(500)
-//       })
   
-//   });
+
+
+
 
 // https://api.openbrewerydb.org/breweries/meta?by_state=minnesota
 //     returns: {
@@ -29,34 +17,75 @@ const {
 //         "per_page": "20"
 //     }
 
-//TODO:
-    //1. intial query to get total (above)
-    //2. Then async calls with proper offsets to build total object
-    //3. Cache info in DB?
-    //4. Return objects with just required info to client side
-router.get('/', (req, res) => {
-    var breweryCount = 0
-    axios({
-        method: 'GET',
-        url: 'https://api.openbrewerydb.org/breweries/meta?by_state=minnesota'
-    }).then((result) => {
-        //Returns needed number of queries to get all data
-        breweryCount = (result.data.total / result.data.per_page)
-        console.log('Brewery Count', breweryCount)
-    })
-
-    const {data}  = axios({
-        method: 'GET',
-        url: 'https://api.openbrewerydb.org/breweries?by_state=minnesota&per_page=10&page=1'
-    }).then( (result) => {
-        // console.log('result', result.data)
-
-        res.send(result.data)
-    }).catch(err => {
-        console.log('ERR in TEMPLATE GET:', err);
+    router.get('/all', async (req, res) =>{
+        const dataStore = []
+        var breweryCount = 0
+        const apiResources = []
+        try{
+            axios({
+                method: 'GET',
+                url: 'https://api.openbrewerydb.org/breweries/meta?by_state=minnesota'
+        }).then((result) => {
+            //Returns needed number of queries to get all data at 50 per page
+            breweryCount = Math.ceil((result.data.total / 50))
+            console.log('Brewery Count', breweryCount)
+            for(let i=1;i<=breweryCount;i++){
+                apiResources.push(`https://api.openbrewerydb.org/breweries?by_state=minnesota&per_page=50&page=${i}`)
+            }
+            //async function to access each API endpoint and await data
+            async function getResource(resource) {
+                const { data } = await axios({
+                    method: 'GET',
+                    url: resource})
+                    for(let d of data){
+                        dataStore.push(d)
+            }}
+    //maps through API array, creates an array of promises that when fulfilled supply the needed information
+            async function getAllResources() {
+                const apiPromises = apiResources.map(getResource)
+                await Promise.all(apiPromises)   
+            }
+             getAllResources().then(promiseRes =>{
+        }).then((result) =>{   
+            //Sort the resulting array of objects by name
+            dataStore.sort(function (a, b) {
+                if (a.name < b.name) {
+                    return -1;
+                }
+                if (a.name > b.name) {
+                    return 1;
+                }
+                return 0;
+          });
+            res.send(dataStore)})
+        }
+    )}catch{
+        console.log('GET error')
         res.sendStatus(500)
-    })
-})
+    }})
+// router.get('/', (req, res) => {
+//     var breweryCount = 0
+//     axios({
+//         method: 'GET',
+//         url: 'https://api.openbrewerydb.org/breweries/meta?by_state=minnesota'
+//     }).then((result) => {
+//         //Returns needed number of queries to get all data at 50 per page
+//         breweryCount = Math.ceil((result.data.total / 50))
+//         console.log('Brewery Count', breweryCount)
+//     })
+
+//     const {data}  = axios({
+//         method: 'GET',
+//         url: 'https://api.openbrewerydb.org/breweries?by_state=minnesota&per_page=50&page=1'
+//     }).then( (result) => {
+//         // console.log('result', result.data)
+
+//         // res.send(result.data)
+//     }).catch(err => {
+//         console.log('ERR in TEMPLATE GET:', err);
+//         res.sendStatus(500)
+//     })
+// })
 //object in req.body
 // {name: '', street: '', city: '', state: '', postal_code: '', website_url: ''}
 router.post('/', (req, res) => {
@@ -103,7 +132,7 @@ router.put('/:id', (req, res) => {
     INSERT INTO "breweries"
     ("name", "street", "city", "state", "postal_code", "website_url", "favorite")
         VALUES($1, $2, $3, $4, $5, $6, $7)`
-    const sqlValues = [brewery.name, brewery.street, brewery.city, brewery.state, brewery.postal_code, brewery.website_url, true ]
+    const sqlValues = [brewery.name, brewery.street, brewery.city, brewery.state, brewery.postal_code, brewery.website_url]
     pool.query(sqlText, sqlValues)
     .then((dbres) => {
         res.sendStatus(200)
@@ -122,3 +151,30 @@ module.exports = router
 //     getLinkPreview(wp.website_url, {followRedirects: 'follow'}).then((data) =>
 //     console.log('does it work?', data)
 //     )}};
+
+
+    //Function to write all of the query to DB
+// async function writeToDB(){
+//     const connection = await pool.connect();
+//     const sqlText = `
+//     INSERT INTO "breweries"
+//     ("name", "street", "city", "state", "postal_code", "website_url")
+//         VALUES($1, $2, $3, $4, $5, $6)`
+//     try{
+        
+//         await connection.query('BEGIN');
+//         for(let brewObj of dataStore){
+//             for(let brewery of brewObj){
+//                 if(brewery.name !== null && brewery.state !== null){
+//                     await connection.query(sqlText, [brewery.name, brewery.street, brewery.city, brewery.state, brewery.postal_code, brewery.website_url])
+//                 }}}
+//     await connection.query('COMMIT;');
+//     res.sendStatus(200)
+
+//     }catch(err){
+//         await connection.query('ROLLBACK;');
+//         console.log('Error write to DB', err)
+//         res.sendStatus(500);
+//     }finally{
+//         connection.release()
+//     }}

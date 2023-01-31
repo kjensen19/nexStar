@@ -7,11 +7,16 @@ CREATE TABLE "breweries" (
   "state" VARCHAR(255) NOT NULL,
   "postal_code" VARCHAR(255),
   "website_url" VARCHAR(255),
-  "favorite" BOOLEAN NOT NULL default false
 );
-
+DROP TABLE IF EXISTS "user";
 CREATE TABLE "user" (
     "id" SERIAL PRIMARY KEY,
     "username" VARCHAR (80) UNIQUE NOT NULL,
     "password" VARCHAR (1000) NOT NULL
 );
+
+DROP TABLE IF EXISTS "favorite";
+CREATE TABLE "favorite" (
+	"id" SERIAL PRIMARY KEY,
+	"user_id" int references "user" not null,
+	"brewery_id" int references "breweries" not null);
