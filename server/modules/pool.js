@@ -9,7 +9,7 @@ if (process.env.DATABASE_URL) {
     let auth = params.auth.split(':');
 
     config = {
-        user: 'kjensen19',
+        user: 'nexstar',
         host: 'db.bit.io',
         database: 'kjensen19/nexstar', 
         password: process.env.DB_PASS, // key from bit.io database page connect menu

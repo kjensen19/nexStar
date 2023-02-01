@@ -9,8 +9,9 @@ const {
   router.get('/', (req,res) => {
     const sqlText = `
         SELECT * from "breweries"
+          WHERE "id"=$1
     `
-    pool.query(sqlText)
+    pool.query(sqlText, [req.user.id])
     .then((dbres) => {
         //console.log('dbres.rows', dbres.rows)
         res.send(dbres.rows)
