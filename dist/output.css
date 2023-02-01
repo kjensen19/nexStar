@@ -1006,6 +1006,10 @@ select {
   flex-wrap: wrap;
 }
 
+.place-content-start {
+  place-content: start;
+}
+
 .place-items-center {
   place-items: center;
 }
@@ -1016,6 +1020,10 @@ select {
 
 .items-center {
   align-items: center;
+}
+
+.justify-start {
+  justify-content: flex-start;
 }
 
 .justify-center {
@@ -1306,6 +1314,10 @@ select {
 
 .pl-3 {
   padding-left: 0.75rem;
+}
+
+.pr-4 {
+  padding-right: 1rem;
 }
 
 .text-center {
