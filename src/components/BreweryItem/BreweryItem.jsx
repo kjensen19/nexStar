@@ -66,7 +66,7 @@ export default function BreweryItem({ brewery, fetchAllBreweries, favorites }){
                 {brewery.website_url != null ? <a className="text-red-400 hover:text-indigo-500 hover:shadow-2xl" href={`${brewery.website_url}`} target={'_blank'}>Website</a> : <p className="text-slate-500 font-medium">Link Not provided</p>}
                 </div>
                 <div className="flex gap-2 w-fit">
-                    <button onClick={showDetails} className="px-4 py-1 mr-4 text-sm max-h-8 shadow-xl bg-orange-600 text-white font-semibold rounded-full border border-b-4 border-orange-700 hover:text-orange-200 hover:bg-indigo-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2">Details</button>
+                    <button onClick={showDetails} className="px-4 py-1 text-sm max-h-8 shadow-xl bg-orange-600 text-white font-semibold rounded-full border border-b-4 border-orange-700 hover:text-orange-200 hover:bg-indigo-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2">Details</button>
                     {favorites === true ? <button onClick={deleteBrewery} className="px-4 py-1 mx-4 text-sm max-h-8 shadow-xl bg-orange-600 text-white font-semibold rounded-full border border-b-4 border-orange-700 hover:text-orange-600 hover:bg-white hover:border-transparent focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2">Delete</button> : null}
                     {favorites === true ? <AddBrewery buttonName={'Edit'} brewery={brewery}/> : null}
                 </div>
@@ -74,7 +74,7 @@ export default function BreweryItem({ brewery, fetchAllBreweries, favorites }){
             </div>
             {details === true ? 
                     <div className="text-orange-600 ">
-                        <p>({brewery.phone.slice(0,3)})-{brewery.phone.slice(0,3)}-{brewery.phone.slice(0,4)}</p>
+                        {brewery.phone !== null ? <p>({brewery.phone.slice(0,3)})-{brewery.phone.slice(0,3)}-{brewery.phone.slice(0,4)}</p> : <p>Not Provided</p>}
                         <p>{brewery.street}</p>
                         <p>{brewery.city}, {brewery.postal_code}</p>
                     </div>:<></>
