@@ -9,11 +9,11 @@ const {
   router.get('/', (req,res) => {
     const sqlText = `
         SELECT * from "breweries"
-          WHERE "id"=$1
+          WHERE "user_id"=$1
     `
     pool.query(sqlText, [req.user.id])
     .then((dbres) => {
-        //console.log('dbres.rows', dbres.rows)
+        console.log('dbres.rows!!!', dbres)
         res.send(dbres.rows)
     }).catch((dbErr) => {
         //console.log('ERROR in fav GET', dbErr)
