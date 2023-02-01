@@ -3,5 +3,6 @@
 @media(max-width: 425px) {
     #breweryCard{
         min-width: 25rem;
+        flex-flow: column;
     }
 }
