@@ -168,10 +168,9 @@ A basic app that queries [openBrewery](https://www.openbrewerydb.org/documentati
     - [✅] Basic Menu
     - [✅] Mobile
 - [ ] Future
-    - [ ] Deploy
+    - [✅] Deploy
     - [ ] Testing
     - [ ] Additional states
-    - [ ] Detailed user profiles
     - [ ] Detailed user profiles
 
 See the [open issues](https://github.com/kjensen19/nexStar/issues) for a full list of proposed features (and known issues).
