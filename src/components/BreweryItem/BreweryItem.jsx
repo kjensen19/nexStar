@@ -3,10 +3,15 @@ import { useState } from 'react'
 import AddBrewery from "../AddBrewery/AddBrewery"
 import '../BreweryItem/BreweryItem.css'
 
-export default function BreweryItem({ brewery, fetchBreweries, favorites }){
+export default function BreweryItem({ brewery, fetchBreweries, favorites, favoriteBreweries }){
     const [fav, setFav] = useState(false)
     const [details, setDetails] = useState(false)
     // console.log('brewery name: ', brewery)
+    for(let brew of favoriteBreweries){
+        if(brewery.name === brew.name){
+            setFav(true)
+        }
+    }
 
     const deleteBrewery = () => {
         axios({

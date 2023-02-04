@@ -36,7 +36,7 @@ export default function BreweryList({ allBreweries, fetchBreweries, favorites, f
                 </button>) : <div className="w-24"></div>}
             <div className="flex flex-wrap gap-2 justify-evenly w-screen">
                 {breweries && breweries.slice(page, (page+10)).map((brewery, i) =>(
-                    <BreweryItem brewery={brewery} key={brewery.id} fetchBreweries={fetchBreweries} favorites={favorites}/>
+                    <BreweryItem brewery={brewery} key={brewery.id} fetchBreweries={fetchBreweries} favorites={favorites} favoriteBreweries={favoriteBreweries}/>
                 ))}
             </div>
                 {page <= pages ? <button
