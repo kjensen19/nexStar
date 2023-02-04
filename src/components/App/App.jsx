@@ -12,17 +12,17 @@ function App(){
     const [currentUser, setCurrentUser] = useState([])
     const [favorites, setFavorites] = useState(false)
     //Calls useEffect on page load and any change to the favorite state (toggled by button)
-    useEffect(() =>{
-        fetchBreweries()
-    }, [favorites])
+    // useEffect(() =>{
+    //     logoutFunction
+    // }, [favorites])
     //Conditionally decides if it should fetch all or fetch favorites based on state
     const fetchBreweries = () => {
         fetchAllBreweries()
         fetchFavoriteBreweries()
-        .then((response) => {
-        }).catch((error) => {
-            console.log('error in GET: ', error)
-        })
+    }
+    const logoutFunction = () => {
+        setAllBreweries([])
+        setFavoriteBreweries([])
     }
 
     const fetchAllBreweries = () =>{
@@ -53,7 +53,7 @@ function App(){
     return(
         <>
                 <UserContext.Provider value={currentUser}>
-                <Header fetchBreweries={fetchBreweries} setCurrentUser={setCurrentUser} setAllBreweries={setAllBreweries} setFavorites={setFavorites} favorites={favorites}/>
+                <Header fetchBreweries={fetchBreweries} setCurrentUser={setCurrentUser} setFavorites={setFavorites} favorites={favorites} logoutFunction={logoutFunction}/>
                 <div className="flex">
                     <BreweryList allBreweries={allBreweries} favoriteBreweries={favoriteBreweries} fetchBreweries={fetchBreweries} favorites={favorites}/>
                 </div>

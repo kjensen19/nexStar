@@ -14,6 +14,15 @@ const {
     pool.query(sqlText, [req.user.id])
     .then((dbres) => {
         console.log('dbres.rows!!!', dbres)
+        (dbres.rows).sort(function (a, b) {
+            if (a.name < b.name) {
+                return -1;
+            }
+            if (a.name > b.name) {
+                return 1;
+            }
+            return 0;
+      });
         res.send(dbres.rows)
     }).catch((dbErr) => {
         //console.log('ERROR in fav GET', dbErr)

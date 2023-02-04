@@ -9,7 +9,8 @@ export default function BreweryItem({ brewery, fetchBreweries, favorites, favori
     // console.log('brewery name: ', brewery)
     for(let brew of favoriteBreweries){
         if(brewery.name === brew.name){
-            setFav(true)
+           brewery = brew
+           console.log('brewery in loop:', brewery)
         }
     }
 
@@ -33,6 +34,7 @@ export default function BreweryItem({ brewery, fetchBreweries, favorites, favori
         setFav(brewery.favorite)
         axios.post('/api/template', brewery
             ).then((res) =>{
+                fetchBreweries()
                 console.log('res here???', res)
             }).catch((err) =>{
                 //TODO: Add Alert here

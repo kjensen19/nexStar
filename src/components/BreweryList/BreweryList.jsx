@@ -6,8 +6,9 @@ import '../BreweryList/BreweryList.css'
 export default function BreweryList({ allBreweries, fetchBreweries, favorites, favoriteBreweries }){
     const value = React.useContext(UserContext)
     const [page, setPage] = useState(0)
-    const [breweries, setBreweries] = useState(favorites ? favoriteBreweries : allBreweries)
-
+    
+    const breweries = favorites ? favoriteBreweries : allBreweries
+    console.log('breweries in List', breweries)
 
     const pages = Math.ceil(breweries.length)
     console.log('value=', value)
