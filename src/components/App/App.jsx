@@ -7,28 +7,45 @@ export const UserContext = React.createContext()
 
 
 function App(){
-    const [breweries, setBreweries] = useState([])
+    const [allBreweries, setAllBreweries] = useState([])
+    const [favoriteBreweries, setFavoriteBreweries] = useState([])
     const [currentUser, setCurrentUser] = useState([])
     const [favorites, setFavorites] = useState(false)
     //Calls useEffect on page load and any change to the favorite state (toggled by button)
-    useEffect(() =>{
-        fetchAllBreweries()
-    }, [favorites])
+    // useEffect(() =>{
+    //     logoutFunction
+    // }, [favorites])
     //Conditionally decides if it should fetch all or fetch favorites based on state
-    const fetchAllBreweries = () => {
-        (favorites === false ? 
-            axios({
-                method: 'GET',
-                url: '/api/template/all'
-        }) : axios({
-                method: 'GET',
-                url: '/api/favorite'
-            }))
-        .then((response) => {
+    const fetchBreweries = () => {
+        fetchAllBreweries()
+        fetchFavoriteBreweries()
+    }
+    const logoutFunction = () => {
+        setAllBreweries([])
+        setFavoriteBreweries([])
+    }
+
+    const fetchAllBreweries = () =>{
+        axios({
+            method: 'GET',
+            url: '/api/template/all'
+        }).then((response) => {
             console.log('GET response: ', response.data)
-            setBreweries(response.data)
+            setAllBreweries(response.data)
         }).catch((error) => {
             console.log('error in GET: ', error)
+        })
+    }
+
+    const fetchFavoriteBreweries = () => {
+        axios({
+            method: 'GET',
+            url: '/api/favorite'
+        }).then((response) => {
+            console.log('GET favorite response: ', response.data)
+            setFavoriteBreweries(response.data)
+        }).catch((error) =>{
+            console.log('Error in fetchFavorites', error)
         })
     }
 
@@ -36,9 +53,9 @@ function App(){
     return(
         <>
                 <UserContext.Provider value={currentUser}>
-                <Header fetchAllBreweries={fetchAllBreweries} setCurrentUser={setCurrentUser} setBreweries={setBreweries} setFavorites={setFavorites} favorites={favorites}/>
+                <Header fetchBreweries={fetchBreweries} setCurrentUser={setCurrentUser} setFavorites={setFavorites} favorites={favorites} logoutFunction={logoutFunction}/>
                 <div className="flex">
-                    <BreweryList breweries={breweries} fetchAllBreweries={fetchAllBreweries} favorites={favorites}/>
+                    <BreweryList allBreweries={allBreweries} favoriteBreweries={favoriteBreweries} fetchBreweries={fetchBreweries} favorites={favorites}/>
                 </div>
                 </UserContext.Provider>
         </>

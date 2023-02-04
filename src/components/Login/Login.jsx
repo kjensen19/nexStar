@@ -7,7 +7,7 @@ import { UserContext } from '../App/App';
 
 
 
-export default function Login({ setCurrentUser }) {
+export default function Login({ setCurrentUser, fetchBreweries, logoutFunction }) {
     const value = React.useContext(UserContext)
     
     const [showLogin, setShowLogin] = useState(value.length ===[] ? false : true);
@@ -29,6 +29,7 @@ export default function Login({ setCurrentUser }) {
         }).then((response) => {
             //logs in after creating
             loginUser(e)
+            fetchBreweries()
         }).catch((err) => {
             console.log('error registering', err)
             //TODO: Add Alert here
@@ -49,6 +50,7 @@ export default function Login({ setCurrentUser }) {
                 setPassword('')
                 setUsername('')
                 setShowLogin(false)
+                fetchBreweries()
             }).catch((err) =>{
                 console.log('error in login', err)
             })
@@ -71,6 +73,7 @@ export default function Login({ setCurrentUser }) {
                 .then((response) =>{
                     setCurrentUser([])
                     setShowLogin(true)
+                    logoutFunction()
                 });
         
             // now that the session has ended on the server
