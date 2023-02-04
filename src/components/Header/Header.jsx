@@ -4,7 +4,7 @@ import React from "react"
 import axios from "axios"
 import { UserContext } from "../App/App"
 
-export default function Header({ fetchAllBreweries, setCurrentUser, setBreweries, setFavorites, favorites }){
+export default function Header({ fetchBreweries, setCurrentUser, setBreweries, setFavorites, favorites }){
     const value = React.useContext(UserContext)
     //sets top level state to prompt a re-render
     const viewFavorites = () => {
@@ -19,7 +19,7 @@ export default function Header({ fetchAllBreweries, setCurrentUser, setBreweries
                 <Login setCurrentUser={setCurrentUser}/>
                 <button className="px-4 py-1 text-sm max-h-8 shadow-xl bg-orange-600 text-white font-semibold rounded-full border border-b-4 border-orange-700 hover:text-orange-600 hover:bg-white hover:border-transparent focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2" onClick={() => setFavorites(false)}>All</button>
                 <button className="px-4 py-1 text-sm max-h-8 shadow-xl bg-orange-600 text-white font-semibold rounded-full border border-b-4 border-orange-700 hover:text-orange-600 hover:bg-white hover:border-transparent focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2" onClick={viewFavorites}>Favorites</button>
-                <AddBrewery fetchAllBreweries={fetchAllBreweries} buttonName={'Add'}/>
+                <AddBrewery fetchBreweries={fetchBreweries} buttonName={'Add'}/>
             </div>
             <div className="grid w-screen place-items-center text-2xl text-white font-semibold">
                 <h1 className="  text-white rounded-xl px-2 my-2">{favorites === true ? 'Favorites' : 'All Breweries'}</h1>

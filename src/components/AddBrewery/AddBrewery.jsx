@@ -31,7 +31,7 @@ export default function AddBrewery({ brewery={name:'', street:'', city:'', state
         ).then((res) =>{
             console.log('res here???', res)
             setShowModal(false)
-            fetchAllBreweries()
+            fetchBreweries()
             setNewBrewery(emptyInputs)
         }).catch((err) =>{
             //TODO: Add Alert here
@@ -46,7 +46,7 @@ export default function AddBrewery({ brewery={name:'', street:'', city:'', state
           data: newBrewery
       }).then((res) => {
           setShowModal(false)
-          fetchAllBreweries()
+          fetchBreweries()
       }).catch((err) => {
           console.log('Err in PUT: ', err)
       })

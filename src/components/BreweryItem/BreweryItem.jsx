@@ -3,7 +3,7 @@ import { useState } from 'react'
 import AddBrewery from "../AddBrewery/AddBrewery"
 import '../BreweryItem/BreweryItem.css'
 
-export default function BreweryItem({ brewery, fetchAllBreweries, favorites }){
+export default function BreweryItem({ brewery, fetchBreweries, favorites }){
     const [fav, setFav] = useState(false)
     const [details, setDetails] = useState(false)
     // console.log('brewery name: ', brewery)
@@ -13,7 +13,7 @@ export default function BreweryItem({ brewery, fetchAllBreweries, favorites }){
             method: 'DELETE',
             url: `/api/template/${brewery.id}`
         }).then((res) => {
-            fetchAllBreweries()
+            fetchBreweries()
         }).catch((err) => {
             console.log('DEL err: ', err)
         })

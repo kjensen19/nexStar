@@ -3,9 +3,12 @@ import React, { useState } from "react"
 import { UserContext } from "../App/App"
 import '../BreweryList/BreweryList.css'
 
-export default function BreweryList({ breweries, fetchAllBreweries, favorites }){
+export default function BreweryList({ allBreweries, fetchBreweries, favorites, favoriteBreweries }){
     const value = React.useContext(UserContext)
     const [page, setPage] = useState(0)
+    const [breweries, setBreweries] = useState(favorites ? favoriteBreweries : allBreweries)
+
+
     const pages = Math.ceil(breweries.length)
     console.log('value=', value)
     console.log('pages', pages)
@@ -33,7 +36,7 @@ export default function BreweryList({ breweries, fetchAllBreweries, favorites })
                 </button>) : <div className="w-24"></div>}
             <div className="flex flex-wrap gap-2 justify-evenly w-screen">
                 {breweries && breweries.slice(page, (page+10)).map((brewery, i) =>(
-                    <BreweryItem brewery={brewery} key={brewery.id} fetchAllBreweries={fetchAllBreweries} favorites={favorites}/>
+                    <BreweryItem brewery={brewery} key={brewery.id} fetchBreweries={fetchBreweries} favorites={favorites}/>
                 ))}
             </div>
                 {page <= pages ? <button
