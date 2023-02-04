@@ -6,7 +6,7 @@ const {
     rejectUnauthenticated,
   } = require('../modules/authentication-middleware');
 
-  router.get('/', (req,res) => {
+  router.get('/', rejectUnauthenticated, (req,res) => {
     const sqlText = `
         SELECT * from "breweries"
           WHERE "user_id"=$1
@@ -21,7 +21,7 @@ const {
     })
   })
 
-  router.put('/:id', (req, res) => {
+  router.put('/:id', rejectUnauthenticated, (req, res) => {
     //console.log('req.params(PUT)', req.body, 'id:', req.user.id)
     const brewery= req.body
     const sqlText = `

@@ -17,7 +17,7 @@ const {
 //         "per_page": "20"
 //     }
 
-    router.get('/all', async (req, res) =>{
+    router.get('/all', rejectUnauthenticated, async (req, res) =>{
         const dataStore = []
         var breweryCount = 0
         const apiResources = []
@@ -63,7 +63,7 @@ const {
         console.log('GET error')
         res.sendStatus(500)
     }})
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
     console.log("user in POST", req.user)
     const brewery = req.body
     console.log('req.body in POST route', brewery)
@@ -89,7 +89,7 @@ router.post('/', (req, res) => {
     
 })
 //DELETE
-router.delete('/:id', (req, res) =>{
+router.delete('/:id', rejectUnauthenticated, (req, res) =>{
     console.log('req.params', req.params)
     const sqlText = `
         DELETE from "breweries"
