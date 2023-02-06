@@ -13,7 +13,7 @@ export default function BreweryItem({ brewery, fetchBreweries, favorites, favori
            console.log('brewery in loop:', brewery)
         }
     }
-
+    //DELETE function by ID
     const deleteBrewery = () => {
         axios({
             method: 'DELETE',

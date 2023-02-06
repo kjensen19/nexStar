@@ -9,7 +9,7 @@ export default function BreweryList({ allBreweries, fetchBreweries, favorites, f
     
     const breweries = favorites ? favoriteBreweries : allBreweries
     console.log('breweries in List', breweries)
-
+    //Calculates how many display pages there are to smooth out arrow rendering
     const pages = Math.ceil(breweries.length)
     console.log('value=', value)
     console.log('pages', pages)

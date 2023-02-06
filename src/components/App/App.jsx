@@ -11,6 +11,7 @@ function App(){
     const [favoriteBreweries, setFavoriteBreweries] = useState([])
     const [currentUser, setCurrentUser] = useState([])
     const [favorites, setFavorites] = useState(false)
+    //This is currently being handled as part of the login process
     //Calls useEffect on page load and any change to the favorite state (toggled by button)
     // useEffect(() =>{
     //     logoutFunction
@@ -24,7 +25,7 @@ function App(){
         setAllBreweries([])
         setFavoriteBreweries([])
     }
-
+    //Fetch all breweries from the api, will need to add a state call to pass
     const fetchAllBreweries = () =>{
         axios({
             method: 'GET',
@@ -36,7 +37,7 @@ function App(){
             console.log('error in GET: ', error)
         })
     }
-
+    //Fetches user's favorites
     const fetchFavoriteBreweries = () => {
         axios({
             method: 'GET',
@@ -49,7 +50,7 @@ function App(){
         })
     }
 
-
+    //UserContext is supplying the user name to all pages
     return(
         <>
                 <UserContext.Provider value={currentUser}>
