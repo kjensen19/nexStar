@@ -169,6 +169,7 @@ A basic app that queries [openBrewery](https://www.openbrewerydb.org/documentati
     - [✅] Mobile
 - [ ] Future
     - [✅] Deploy
+    - [✅] Fill hearts for favorites on all list
     - [ ] Testing
     - [ ] Additional states
     - [ ] Detailed user profiles
