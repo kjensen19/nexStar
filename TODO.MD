@@ -35,7 +35,7 @@ Decisions:
     ✅Mobile
 
 NEXT:
-    1. Rename template router to allBreweries or openbrewery or something
+    ✅1. Rename template router to allBreweries or openbrewery or something
     2. Add multiple state functionality (add dropdown on client) and variable on server side for all
         1. Does that mean we also use for favorites (favorites by state?)- thinking no
     3. Search

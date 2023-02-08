@@ -29,7 +29,7 @@ function App(){
     const fetchAllBreweries = () =>{
         axios({
             method: 'GET',
-            url: '/api/template/all'
+            url: '/api/allBreweries/all'
         }).then((response) => {
             console.log('GET response: ', response.data)
             setAllBreweries(response.data)

@@ -17,7 +17,7 @@ export default function BreweryItem({ brewery, fetchBreweries, favorites, favori
     const deleteBrewery = () => {
         axios({
             method: 'DELETE',
-            url: `/api/template/${brewery.id}`
+            url: `/api/allBreweries/${brewery.id}`
         }).then((res) => {
             fetchBreweries()
         }).catch((err) => {
@@ -32,7 +32,7 @@ export default function BreweryItem({ brewery, fetchBreweries, favorites, favori
     const favorite = () => {
         brewery.favorite = true
         setFav(brewery.favorite)
-        axios.post('/api/template', brewery
+        axios.post('/api/allBreweries', brewery
             ).then((res) =>{
                 fetchBreweries()
                 console.log('res here???', res)

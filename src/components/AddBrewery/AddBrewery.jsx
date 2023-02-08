@@ -27,7 +27,7 @@ export default function AddBrewery({ brewery={name:'', street:'', city:'', state
     //Then empty inputs/object
     function addNewBrewery(){
         console.log('in post', newBrewery)
-        axios.post('/api/template', newBrewery
+        axios.post('/api/allBreweries', newBrewery
         ).then((res) =>{
             console.log('res here???', res)
             setShowModal(false)
