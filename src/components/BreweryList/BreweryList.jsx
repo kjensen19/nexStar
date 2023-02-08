@@ -6,7 +6,7 @@ import '../BreweryList/BreweryList.css'
 export default function BreweryList({ allBreweries, fetchBreweries, favorites, favoriteBreweries, setPage, page }){
     const value = React.useContext(UserContext)
     
-    
+    //possibly could resolve page issue here instead, that would probably be cleaner
     const breweries = favorites ? favoriteBreweries : allBreweries
     console.log('breweries in List', breweries)
     //Calculates how many display pages there are to smooth out arrow rendering
