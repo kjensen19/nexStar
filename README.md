@@ -36,7 +36,7 @@
     <a href="https://github.com/kjensen19/nexStar"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/kjensen19/nexStar">View Demo</a>
+    <a href="https://mn-brewery-finder.herokuapp.com/">View Demo</a>
     ·
     <a href="https://github.com/kjensen19/nexStar/issues">Report Bug</a>
     ·
@@ -76,9 +76,6 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `kjensen19`, `nexStar`, `https://www.linkedin.com/in/kyle-jensen-solutions/`, `gmail`, `kjensen19`, `MN Brewery Finder`, `project_description`
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
