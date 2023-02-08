@@ -13,7 +13,6 @@ const {
     `
     pool.query(sqlText, [req.user.id])
     .then((dbres) => {
-        console.log('dbres.rows!!!', dbres)
         (dbres.rows).sort(function (a, b) {
             if (a.name < b.name) {
                 return -1;
@@ -23,9 +22,10 @@ const {
             }
             return 0;
       });
+        console.log('sorted?', dbres.rows)
         res.send(dbres.rows)
     }).catch((dbErr) => {
-        //console.log('ERROR in fav GET', dbErr)
+        console.log('ERROR in fav GET', dbErr)
         res.sendStatus(500)
     })
   })
