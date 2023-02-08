@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { LockClosedIcon } from '@heroicons/react/20/solid'
 import { PlusIcon } from '@heroicons/react/20/solid'
@@ -13,8 +13,10 @@ export default function Login({ setCurrentUser, fetchBreweries, logoutFunction }
     const [showLogin, setShowLogin] = useState(value.length ===[] ? false : true);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+
     console.log('value in login', value.length)
     //Add new user
+
     function registerUser(e){
         e.preventDefault()
         console.log('username, password', username, password)

@@ -17,20 +17,22 @@ const {
 //         "per_page": "20"
 //     }
 
-    router.get('/all', rejectUnauthenticated, async (req, res) =>{
+    router.get('/all/:state', rejectUnauthenticated, async (req, res) =>{
         const dataStore = []
         var breweryCount = 0
         const apiResources = []
+        const state = req.params.state
+        console.log('req.params', req.params)
         try{
             axios({
                 method: 'GET',
-                url: 'https://api.openbrewerydb.org/breweries/meta?by_state=minnesota'
+                url: `https://api.openbrewerydb.org/breweries/meta?by_state=${state}`
         }).then((result) => {
             //Returns needed number of queries to get all data at 50 per page
             breweryCount = Math.ceil((result.data.total / 50))
             //console.log('Brewery Count', breweryCount)
             for(let i=1;i<=breweryCount;i++){
-                apiResources.push(`https://api.openbrewerydb.org/breweries?by_state=minnesota&per_page=50&page=${i}`)
+                apiResources.push(`https://api.openbrewerydb.org/breweries?by_state=${state}&per_page=50&page=${i}`)
             }
             //async function to access each API endpoint and await data
             async function getResource(resource) {

@@ -14,12 +14,10 @@ function App(){
     const [page, setPage] = useState(0)
     //This is currently being handled as part of the login process
     //Calls useEffect on page load and any change to the favorite state (toggled by button)
-    useEffect(() =>{
-        checkUser
-    }, [])
+
     //Conditionally decides if it should fetch all or fetch favorites based on state
-    const fetchBreweries = () => {
-        fetchAllBreweries()
+    const fetchBreweries = (state) => {
+        fetchAllBreweries(state)
         fetchFavoriteBreweries()
     }
     const logoutFunction = () => {
@@ -27,10 +25,10 @@ function App(){
         setFavoriteBreweries([])
     }
     //Fetch all breweries from the api, will need to add a state call to pass
-    const fetchAllBreweries = () =>{
+    const fetchAllBreweries = (state="Minnesota") =>{
         axios({
             method: 'GET',
-            url: '/api/allBreweries/all'
+            url: `/api/allBreweries/all/${state}`
         }).then((response) => {
             console.log('GET response: ', response.data)
             setAllBreweries(response.data)
@@ -51,19 +49,7 @@ function App(){
         })
     }
 
-    const checkUser = () =>{
-        axios({
-            method: 'GET',
-            url: '/api/user'
-        }).the((response) =>{
-            console.log('checkUser response', response)
-            if(response.user.name){
-                setCurrentUser(response.user.name)
-            }
-        }).catch((error) =>{
-            console.log('Error in checkUser', error)
-        })
-    }
+
 
     //UserContext is supplying the user name to all pages
     return(
