@@ -36,12 +36,12 @@ Decisions:
 
 NEXT:
     ✅1. Rename template router to allBreweries or openbrewery or something
-    2. Add multiple state functionality (add dropdown on client) and variable on server side for all
-        1. Does that mean we also use for favorites (favorites by state?)- thinking no
+    ✅2. Add multiple state functionality (add dropdown on client) and variable on server side for all
+        ✅1. Does that mean we also use for favorites (favorites by state?)- thinking no
     3. Search
     4. User icon(s)/profile
     5. Ability to see which other users have favorited a brewery?
-    6. Make sure we are checking if someone is logged in rather than automatically sending to login on refresh
+    ❓6. Make sure we are checking if someone is logged in rather than automatically sending to login on refresh
     7. Some kind of sharing?
     8. user reviews/ratings (goes with 5, maybe?)
     9. Picture upload?

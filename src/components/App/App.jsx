@@ -11,14 +11,13 @@ function App(){
     const [favoriteBreweries, setFavoriteBreweries] = useState([])
     const [currentUser, setCurrentUser] = useState([])
     const [favorites, setFavorites] = useState(false)
+    const [page, setPage] = useState(0)
     //This is currently being handled as part of the login process
     //Calls useEffect on page load and any change to the favorite state (toggled by button)
-    // useEffect(() =>{
-    //     logoutFunction
-    // }, [favorites])
+
     //Conditionally decides if it should fetch all or fetch favorites based on state
-    const fetchBreweries = () => {
-        fetchAllBreweries()
+    const fetchBreweries = (state) => {
+        fetchAllBreweries(state)
         fetchFavoriteBreweries()
     }
     const logoutFunction = () => {
@@ -26,10 +25,10 @@ function App(){
         setFavoriteBreweries([])
     }
     //Fetch all breweries from the api, will need to add a state call to pass
-    const fetchAllBreweries = () =>{
+    const fetchAllBreweries = (state="Minnesota") =>{
         axios({
             method: 'GET',
-            url: '/api/allBreweries/all'
+            url: `/api/allBreweries/all/${state}`
         }).then((response) => {
             console.log('GET response: ', response.data)
             setAllBreweries(response.data)
@@ -50,13 +49,15 @@ function App(){
         })
     }
 
+
+
     //UserContext is supplying the user name to all pages
     return(
         <>
                 <UserContext.Provider value={currentUser}>
-                <Header fetchBreweries={fetchBreweries} setCurrentUser={setCurrentUser} setFavorites={setFavorites} favorites={favorites} logoutFunction={logoutFunction}/>
+                <Header fetchBreweries={fetchBreweries} setCurrentUser={setCurrentUser} setFavorites={setFavorites} favorites={favorites} logoutFunction={logoutFunction} setPage={setPage}/>
                 <div className="flex">
-                    <BreweryList allBreweries={allBreweries} favoriteBreweries={favoriteBreweries} fetchBreweries={fetchBreweries} favorites={favorites}/>
+                    <BreweryList allBreweries={allBreweries} favoriteBreweries={favoriteBreweries} fetchBreweries={fetchBreweries} favorites={favorites} setPage={setPage} page={page}/>
                 </div>
                 </UserContext.Provider>
         </>

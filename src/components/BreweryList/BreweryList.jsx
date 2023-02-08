@@ -3,10 +3,10 @@ import React, { useState } from "react"
 import { UserContext } from "../App/App"
 import '../BreweryList/BreweryList.css'
 
-export default function BreweryList({ allBreweries, fetchBreweries, favorites, favoriteBreweries }){
+export default function BreweryList({ allBreweries, fetchBreweries, favorites, favoriteBreweries, setPage, page }){
     const value = React.useContext(UserContext)
-    const [page, setPage] = useState(0)
     
+    //possibly could resolve page issue here instead, that would probably be cleaner
     const breweries = favorites ? favoriteBreweries : allBreweries
     console.log('breweries in List', breweries)
     //Calculates how many display pages there are to smooth out arrow rendering
