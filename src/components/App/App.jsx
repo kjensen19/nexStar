@@ -11,11 +11,12 @@ function App(){
     const [favoriteBreweries, setFavoriteBreweries] = useState([])
     const [currentUser, setCurrentUser] = useState([])
     const [favorites, setFavorites] = useState(false)
+    const [page, setPage] = useState(0)
     //This is currently being handled as part of the login process
     //Calls useEffect on page load and any change to the favorite state (toggled by button)
-    // useEffect(() =>{
-    //     logoutFunction
-    // }, [favorites])
+    useEffect(() =>{
+        checkUser
+    }, [])
     //Conditionally decides if it should fetch all or fetch favorites based on state
     const fetchBreweries = () => {
         fetchAllBreweries()
@@ -50,13 +51,27 @@ function App(){
         })
     }
 
+    const checkUser = () =>{
+        axios({
+            method: 'GET',
+            url: '/api/user'
+        }).the((response) =>{
+            console.log('checkUser response', response)
+            if(response.user.name){
+                setCurrentUser(response.user.name)
+            }
+        }).catch((error) =>{
+            console.log('Error in checkUser', error)
+        })
+    }
+
     //UserContext is supplying the user name to all pages
     return(
         <>
                 <UserContext.Provider value={currentUser}>
-                <Header fetchBreweries={fetchBreweries} setCurrentUser={setCurrentUser} setFavorites={setFavorites} favorites={favorites} logoutFunction={logoutFunction}/>
+                <Header fetchBreweries={fetchBreweries} setCurrentUser={setCurrentUser} setFavorites={setFavorites} favorites={favorites} logoutFunction={logoutFunction} setPage={setPage}/>
                 <div className="flex">
-                    <BreweryList allBreweries={allBreweries} favoriteBreweries={favoriteBreweries} fetchBreweries={fetchBreweries} favorites={favorites}/>
+                    <BreweryList allBreweries={allBreweries} favoriteBreweries={favoriteBreweries} fetchBreweries={fetchBreweries} favorites={favorites} setPage={setPage} page={page}/>
                 </div>
                 </UserContext.Provider>
         </>

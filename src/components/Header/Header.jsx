@@ -4,10 +4,11 @@ import React from "react"
 import axios from "axios"
 import { UserContext } from "../App/App"
 
-export default function Header({ fetchBreweries, setCurrentUser, setFavorites, favorites, logoutFunction }){
+export default function Header({ fetchBreweries, setCurrentUser, setFavorites, favorites, logoutFunction, setPage }){
     const value = React.useContext(UserContext)
     //sets top level state to prompt a re-render
     const viewFavorites = () => {
+        setPage(0)
         setFavorites(true)
 
     }
