@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Header from "../Header/Header";
 import BreweryList from "../BreweryList/BreweryList";
 
@@ -12,8 +12,6 @@ function App(){
     const [currentUser, setCurrentUser] = useState([])
     const [favorites, setFavorites] = useState(false)
     const [page, setPage] = useState(0)
-    //This is currently being handled as part of the login process
-    //Calls useEffect on page load and any change to the favorite state (toggled by button)
 
     //Conditionally decides if it should fetch all or fetch favorites based on state
     const fetchBreweries = (state) => {
@@ -25,6 +23,7 @@ function App(){
         setFavoriteBreweries([])
     }
     //Fetch all breweries from the api, will need to add a state call to pass
+    //State defaults to MN, for now-- may eventually set as part of logging in or registering
     const fetchAllBreweries = (state="Minnesota") =>{
         axios({
             method: 'GET',
@@ -36,7 +35,7 @@ function App(){
             console.log('error in GET: ', error)
         })
     }
-    //Fetches user's favorites
+    //Fetches user's favorites so we can mark breweries in the all list that they already favorited
     const fetchFavoriteBreweries = () => {
         axios({
             method: 'GET',
@@ -51,7 +50,7 @@ function App(){
 
 
 
-    //UserContext is supplying the user name to all pages
+    //UserContext is supplying the user name to all pages- this may be accesssible through cookie storage?
     return(
         <>
                 <UserContext.Provider value={currentUser}>

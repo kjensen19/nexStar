@@ -167,8 +167,9 @@ A basic app that queries [openBrewery](https://www.openbrewerydb.org/documentati
 - [ ] Future
     - [✅] Deploy
     - [✅] Fill hearts for favorites on all list
+    - [✅] Error Handling
     - [ ] Testing
-    - [ ] Additional states
+    - [✅] Additional states
     - [ ] Detailed user profiles
 
 See the [open issues](https://github.com/kjensen19/nexStar/issues) for a full list of proposed features (and known issues).

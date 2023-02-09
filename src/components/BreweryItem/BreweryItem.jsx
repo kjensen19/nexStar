@@ -21,6 +21,7 @@ export default function BreweryItem({ brewery, fetchBreweries, favorites, favori
         }).then((res) => {
             fetchBreweries()
         }).catch((err) => {
+            alert('Failed to delete brewery, please try again')
             console.log('DEL err: ', err)
         })
     }
@@ -37,7 +38,7 @@ export default function BreweryItem({ brewery, fetchBreweries, favorites, favori
                 fetchBreweries()
                 console.log('res here???', res)
             }).catch((err) =>{
-                //TODO: Add Alert here
+                alert('Failed to favorite brewery, please try again')
                 console.log('POST err in fav: ', err)
             })
         
