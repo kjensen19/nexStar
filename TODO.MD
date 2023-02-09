@@ -29,7 +29,7 @@ Decisions:
     ✅Stay SPA or add routing?
     ✅pagination
     ✅Menu interface
-    Add notes?
+    Add notes?- space issues unless we go to single item detail view
     Website preview (some don't work, possible security issues are the cons...  the pros are when it works it looks cool)
     ✅Deploy
     ✅Mobile
@@ -46,6 +46,7 @@ NEXT:
     8. user reviews/ratings (goes with 5, maybe?)
     9. Picture upload?
     10. Something shareable?
+    ✅11. Error Handling
 
 
     

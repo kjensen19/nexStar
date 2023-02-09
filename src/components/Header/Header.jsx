@@ -24,7 +24,7 @@ export default function Header({ fetchBreweries, setCurrentUser, setFavorites, f
         console.log('breweryState?', breweryState)
         setBreweryState(e.target.value)
     }
-
+    //Would the states be more tolerable as a an array to map over? Or as an imported component?
     return(
         <div className="flex flex-col w-screen">
             <h1 className='text-4xl text-white font-semibold grid w-screen place-items-center py-2'>{value.length === 0 ? 'MN Breweries' : `${value}'s Breweries`}</h1>
