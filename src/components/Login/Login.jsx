@@ -34,6 +34,7 @@ export default function Login({ setCurrentUser, fetchBreweries, logoutFunction }
             fetchBreweries()
         }).catch((err) => {
             console.log('error registering', err)
+            alert('Failed to register user, please try again')
             //TODO: Add Alert here
         })
     }
@@ -55,6 +56,7 @@ export default function Login({ setCurrentUser, fetchBreweries, logoutFunction }
                 fetchBreweries()
             }).catch((err) =>{
                 console.log('error in login', err)
+                alert("Login failed, please check your information and try again")
             })
                 
     }

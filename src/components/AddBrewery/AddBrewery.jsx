@@ -35,6 +35,7 @@ export default function AddBrewery({ brewery={name:'', street:'', city:'', state
             setNewBrewery(emptyInputs)
         }).catch((err) =>{
             //TODO: Add Alert here
+            alert('Failed to add new brewery, please try again')
             console.log('POST err: ', err)
         })
     }
@@ -48,6 +49,7 @@ export default function AddBrewery({ brewery={name:'', street:'', city:'', state
           setShowModal(false)
           fetchBreweries()
       }).catch((err) => {
+          alert('Failed to udpate brewery info, please try again')
           console.log('Err in PUT: ', err)
       })
   }
