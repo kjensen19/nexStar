@@ -91,3 +91,4 @@ export default function BreweryItem({ brewery, fetchBreweries, favorites, favori
 
     )
 }
+//Probably need to add handling for mistakes in phone number (if length===10 vs 7(0-3, 0-4) vs anything else (not provided))
