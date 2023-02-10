@@ -57,6 +57,7 @@ export default function AddBrewery({ brewery={name:'', street:'', city:'', state
     const handleSubmit = (e) => {
         e.preventDefault();
         //Checks if we are editing or adding
+        //This needs more testing, and now that we have the fav array anyways we should just check that maybe?
         if(newBrewery.favorite === true){
           //PUT
           updateBrewery()
@@ -64,7 +65,10 @@ export default function AddBrewery({ brewery={name:'', street:'', city:'', state
         addNewBrewery();
     }
     // {name: '', street: '', city: '', state: '', postal_code: '', website_url: ''}
-    //Button that cotrols opening and closing the modal and then the modal conditionally rendered based on state (controlled by button)
+    //Button that cotrols opening and closing the modal and then the modal conditionally 
+    //rendered based on state (controlled by button)
+
+    //Could look at changing in-line modal open/close to a open ? !open : open type ternary
     return(
         <>
       <button

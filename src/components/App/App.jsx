@@ -14,6 +14,7 @@ function App(){
     const [page, setPage] = useState(0)
 
     //Conditionally decides if it should fetch all or fetch favorites based on state
+    //Should not use state here, variable should be renamed (even though it makes sense)
     const fetchBreweries = (state) => {
         fetchAllBreweries(state)
         fetchFavoriteBreweries()
