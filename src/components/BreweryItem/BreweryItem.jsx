@@ -33,8 +33,8 @@ export default function BreweryItem({ brewery, fetchBreweries, favorites, favori
     const favorite = () => {
         brewery.favorite = true
         setFav(brewery.favorite)
-        axios.post('/api/allBreweries', brewery
-            ).then((res) =>{
+        axios.post('/api/allBreweries', brewery) 
+            .then((res) =>{
                 fetchBreweries()
                 console.log('res here???', res)
             }).catch((err) =>{
