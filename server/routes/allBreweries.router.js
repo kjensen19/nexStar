@@ -65,6 +65,8 @@ const {
         console.log('GET error')
         res.sendStatus(500)
     }})
+
+    //POST
 router.post('/', rejectUnauthenticated, (req, res) => {
     console.log("user in POST", req.user)
     const brewery = req.body
