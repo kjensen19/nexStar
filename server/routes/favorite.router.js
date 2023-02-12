@@ -2,9 +2,7 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool')
 const axios = require('axios')
-const {
-    rejectUnauthenticated,
-  } = require('../modules/authentication-middleware');
+const { rejectUnauthenticated, } = require('../modules/authentication-middleware');
 
   router.get('/', rejectUnauthenticated, (req,res) => {
     const sqlText = `
@@ -49,30 +47,6 @@ const {
 })
 
 
-
-
-
-
-
 module.exports = router
 
 
-// router.post('/', (req, res) => {
-//     const brewery = req.body
-//     console.log('req.body in POST route', brewery)
-//     const sqlText = `
-//         INSERT INTO "breweries"
-//             ("name", "street", "city", "state", "postal_code", "website_url")
-//             VALUES($1, $2, $3, $4, $5, $6)
-//         `
-//     const sqlValues = [brewery.name, brewery.street, brewery.city, brewery.state, brewery.postal_code, brewery.website_url]
-    
-//     pool.query(sqlText, sqlValues)
-//     .then((dbres) => {
-//         res.sendStatus(201)
-//     }).catch((dbErr) => {
-//         console.log('error in POST: ', dbErr)
-//         res.sendStatus(500)
-//     })
-    
-// })
