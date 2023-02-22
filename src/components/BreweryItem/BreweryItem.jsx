@@ -92,3 +92,4 @@ export default function BreweryItem({ brewery, fetchBreweries, favorites, favori
     )
 }
 //Probably need to add handling for mistakes in phone number (if length===10 vs 7(0-3, 0-4) vs anything else (not provided))
+//{brewery.phone.length === 0 ? <p>Not Provided<p> : brewery.phone.length === 10 ? <p>({brewery.phone.slice(0,3)})-{brewery.phone.slice(0,3)}-{brewery.phone.slice(0,4)}</p> : <p>{brewery.phone.slice(0,3)}-{brewery.phone.slice(0,4)}</p>}
